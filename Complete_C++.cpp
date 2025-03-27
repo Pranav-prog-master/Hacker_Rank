@@ -293,3 +293,155 @@ int main() {
     return 0;
 }
 
+
+
+//! ********** Arrays **********
+//! Objective
+// You will be given an array of  integers and you have to print the integers in the reverse order.
+//? Input Format
+// The first line of the input contains N,where N is the number of integers.The next line contains N space-separated integers.
+//? Constraints
+// 1 <= N <= 1000
+// 1 <= A[i] <= 10000, where A[i] is the ith integer in the array.
+//? Output Format
+// Print the  integers of the array in the reverse order, space-separated on a single line.
+//? Sample Input
+// 4
+// 1 4 3 2
+//? Sample Output
+// 2 3 4 1
+
+//?
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int N;
+    cin >> N;
+    vector<int> array(N);
+    for (int i = 0; i < N; ++i) {
+        cin >> array[i];
+    }
+    for (int i = N - 1; i >= 0; --i) {
+        cout << array[i] << " ";
+    }
+    return 0;
+}
+
+
+//! ********** Variable Sized Arrays **********
+//! Objective
+// Consider an n-element array,a, where each index i in the array contains a reference to an array of k integers (where the value of k varies from array to array). See the Explanation section below for a diagram.
+// Given a, you must answer  queries. Each query is in the format i j, where  denotes an index in array a and j denotes an index in the array located at a[i]. For each query, find and print the value of element j in the array at location a[i] on a new line.
+
+//? Input Format
+// The first line contains two space-separated integers denoting the respective values of  (the number of variable-length arrays) and  q(the number of queries).
+// Each line i of the n subsequent lines contains a space-separated sequence in the format k a[i]0 a[i]1 … a[i]k-1 describing the k-element array located at a[i].
+// Each of the q subsequent lines contains two space-separated integers describing the respective values of i (an index in array a) and j (an index in the array referenced by a[i]) for a query.
+
+//? Constraints
+// 1<=n<=10^5
+// 1<=q<=10^5
+// 1<=k<=3.10^5
+// 1<=∫k<=3.10^5
+// 1<=i<=n
+// 1<=j<=k
+// All indices in this challenge are zero-based.
+// All the given numbers are non negative and are not greater than 10^6
+
+//? Output Format
+// For each pair of i and j values (i.e., for each query), print a single integer that denotes the element located at index  of the array referenced by a[i]. There should be a total of q lines of output.
+
+//? Sample Input
+// 2 2
+// 3 1 5 4
+// 5 1 2 8 9 3
+// 0 1
+// 1 3
+
+//? Sample Output
+// 5
+// 9
+
+//?
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n, q;
+    cin >> n >> q;
+
+    vector<vector<int>> a(n);
+
+    for (int i = 0; i < n; ++i) {
+        int k;
+        cin >> k;
+        a[i].resize(k);
+        for (int j = 0; j < k; ++j) {
+            cin >> a[i][j];
+        }
+    }
+
+    for (int x = 0; x < q; ++x) {
+        int i, j;
+        cin >> i >> j;
+        cout << a[i][j] << endl;
+    }
+    return 0;
+}
+
+
+//! ********** StringStream **********
+//! Objective
+//? Function Description
+// Complete the  function in the editor below.parseInts has the following parameters:
+// string str: a string of comma separated integers
+//? Returns
+// vector<int>: a vector of the parsed integers.
+//* Note: You can learn to push elements onto a vector by solving the first problem in the STL chapter.
+
+//? Input Format
+// There is one line of ( n ) integers separated by commas.
+//? Constraints
+// The length of  is less than ( 8 * 10^5 ).
+//? Sample Input
+// 23,4,56
+//? Sample Output
+// 23
+// 4
+// 56
+
+//?
+#include <iostream>
+#include <vector>
+#include <sstream>
+using namespace std;
+
+vector<int> parseInts(const string &str) {
+    vector<int> result;
+    stringstream ss(str);
+    char comma;
+    int number;
+
+    while (ss >> number) {
+        result.push_back(number);
+        ss >> comma; 
+    }
+
+    return result;
+}
+
+int main() {
+    string input;
+    getline(cin, input); 
+
+    vector<int> integers = parseInts(input);
+
+    for (int num : integers) {
+        cout << num << endl;
+    }
+
+    return 0;
+}
