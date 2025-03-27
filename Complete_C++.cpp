@@ -415,8 +415,6 @@ int main() {
 
 //?
 #include <iostream>
-
-jugendra kashyap
 #include <vector>
 #include <sstream>
 using namespace std;
